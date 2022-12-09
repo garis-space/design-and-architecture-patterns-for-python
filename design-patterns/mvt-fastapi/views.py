@@ -9,10 +9,8 @@ def user_view(app: FastAPI, templates: Jinja2Templates, fake_db: dict) -> FastAP
     # Define the user view
     @app.get("/user", response_class=HTMLResponse)
     async def user(request: Request, username: str):
-        if username in fake_db:
-            # Get the user from the database
-            user = User(username=username)
+        # Get the user from the database
+        user = User(username=username).get_user(fake_db)
 
-            # Return the user template
-            return templates.TemplateResponse("user.html", {"request": request, "user": user})
-        raise HTTPException(status_code=404, detail="User not found")
+        # Return the user template
+        return templates.TemplateResponse("user.html", {"request": request, "user": user})
