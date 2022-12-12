@@ -7,9 +7,11 @@ In this example, we have defined a model for the user, with a field for the user
 Finally, we defined a template for displaying the user, which uses the user object provided by the view to display the user's name. This is an example of how MVT can be used to separate the data model, user interface and application logic in a web application.
 
 #
-### Create and activate a virtual environment
+### Create and activate a virtual environment (conda for macOS)
 ```bash
-# virtualenv, pyenv, or conda
+conda create -n patterns-and-algorithms python=3.10
+
+conda activate patterns-and-algorithms
 ```
 
 ### Install dependencies
@@ -19,15 +21,22 @@ pip install -r requirements.txt
 
 ### Run example
 ```bash
-uvicorn main:app --reload
+python main.py
 ```
 
 ### Get user data
 ```bash
-curl http://localhost:8000/user?username=foo
+curl -X GET "http://localhost:8000/user?username=foo"
 ```
 
 ### Run tests
 ```bash
 pytest tests.py
+```
+
+### Clean up
+```bash
+conda deactivate
+
+conda remove -n patterns-and-algorithms --all
 ```

@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from fastapi.templating import Jinja2Templates
 from views import user_view
@@ -17,3 +18,6 @@ templates = Jinja2Templates(directory="templates")
 
 # Define the view for handling user
 user_view = user_view(app, templates, fake_db)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="localhost", port=8000)
