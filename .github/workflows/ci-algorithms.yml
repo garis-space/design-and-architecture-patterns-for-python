@@ -51,4 +51,5 @@ jobs:
         working-directory: ./algorithms/linear-regression/django
         run: |
           python manage.py migrate
+          python manage.py loaddata example/fixtures/linear-regression.json
           python manage.py test
