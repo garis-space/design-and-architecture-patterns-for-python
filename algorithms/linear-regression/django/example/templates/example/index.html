@@ -1,0 +1,22 @@
+<h1>Linear Regression</h1>
+
+{% if form.errors %}
+    <p>Your input had some errors:</p>
+    <ul>
+    {% for field in form %}
+        {% for error in field.errors %}
+            <li>{{ field.label }}: {{ error }}</li>
+        {% endfor %}
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<form method="post" action=".">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Predict">
+</form>
+
+{% if prediction %}
+    <h2>Prediction</h2>
+    <p>{{ prediction }}</p>
+{% endif %}

@@ -15,7 +15,7 @@ defaults:
     shell: bash
 
 jobs:
-  test-job:
+  linear-regression-test-job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,13 +30,25 @@ jobs:
       - name: Check Python version
         run: python --version
 
-      - name: Install Dependencies (Linear Regression - FastAPI)
+      - name: Install Dependencies - FastAPI
         working-directory: ./algorithms/linear-regression/fastapi
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Tests (Linear Regression - FastAPI)
+      - name: Run Tests - FastAPI
         working-directory: ./algorithms/linear-regression/fastapi
         run: |
           pytest tests.py
+
+      - name: Install Dependencies - Django
+        working-directory: ./algorithms/linear-regression/django
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Tests - Django
+        working-directory: ./algorithms/linear-regression/django
+        run: |
+          python manage.py migrate
+          python manage.py test
