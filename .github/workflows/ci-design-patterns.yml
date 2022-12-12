@@ -1,4 +1,4 @@
-name: CI - algorithms
+name: CI - design-patterns
 
 on:
   push:
@@ -30,13 +30,13 @@ jobs:
       - name: Check Python version
         run: python --version
 
-      - name: Install Dependencies (Linear Regression - FastAPI)
-        working-directory: ./algorithms/linear-regression/fastapi
+      - name: Install Dependencies (MVT - FastAPI)
+        working-directory: ./design-patterns/mvt/fastapi
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Tests (Linear Regression - FastAPI)
-        working-directory: ./algorithms/linear-regression/fastapi
+      - name: Run Tests (MVT - FastAPI)
+        working-directory: ./design-patterns/mvt/fastapi
         run: |
           pytest tests.py
